@@ -9,16 +9,28 @@ public class ViewTime : MonoBehaviour
 {
     /**
     <summary>
-    Timeオブジェクトに時間を表示させる
-    L20：countTime変数に経過した時間を格納する
-    L21：viewTimeに経過時間を文字にして格納する(f0で整数のみを出す)
+    時間を測る。
+    L28のifでflagが１の時時間をスタートさせる。
+    L33で時間を表示させる。
     <summary>
     */
-    private float countTime = 0.0f;
-    public Text viewTime;
+    public UnityEngine.UI.Text TimeText;
+    public static float countTime;
+    private int flag;
 
-    void Update(){
-        countTime = Time.time;
-        viewTime.text = countTime.ToString("f0") + "秒";
+    void Start()
+    {
+        countTime = 0;
+        flag = 1;
+    }
+
+    void Update()
+    {
+        if(flag == 1) //タイマースタート
+        {
+            countTime += Time.deltaTime;
+        }
+
+        TimeText.text = countTime.ToString("F0") + "秒";
     }
 }
