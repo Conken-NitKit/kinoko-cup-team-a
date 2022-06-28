@@ -7,6 +7,11 @@ using System.Diagnostics;
 
 public class ViewTime : MonoBehaviour
 {
+    public UnityEngine.UI.Text TimeText;
+    public static float countTime;
+    private int flag;
+    public GameObject Panel;
+
     /**
     <summary>
     時間を測る。
@@ -14,9 +19,6 @@ public class ViewTime : MonoBehaviour
     F0で整数だけ表示する
     <summary>
     */
-    public UnityEngine.UI.Text TimeText;
-    public static float countTime;
-    private int flag;
 
     void Start()
     {
