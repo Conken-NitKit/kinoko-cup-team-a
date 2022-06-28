@@ -10,8 +10,8 @@ public class ViewTime : MonoBehaviour
     /**
     <summary>
     時間を測る。
-    L28のifでflagが１の時時間をスタートさせる。
-    L33で時間を表示させる。
+    Update内でflagが１の時、タイマースタート
+    F0で整数だけ表示する
     <summary>
     */
     public UnityEngine.UI.Text TimeText;
