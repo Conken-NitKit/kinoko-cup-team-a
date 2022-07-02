@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class JudgeGame : MonoBehaviour
 {
-    public int flag = 0;
+    public int flag;
     
     /**
     <summary>
@@ -13,8 +14,7 @@ public class JudgeGame : MonoBehaviour
     動物と下に当たった時の判断をする棒を置く
     動物にridgid body2Dとbox collider、棒にbox colliderをつける
     動物にtagのCharacterを設定
-    flag変数はゲームオーバーしたかどうかを判断する
-    通常はflagは0, 下の棒に当たると1になる
+    flag
     下のOnTriggerEnter2Dはcharacterに何か当たると発動するメソッド
     JudgeObjectに適用する
 
@@ -25,10 +25,18 @@ public class JudgeGame : MonoBehaviour
     ifでCharacterタグのものが当たったらflagを1にする
     <summary>
     */
+
+    void Start()
+    {
+        Debug.Log(10);
+        flag = 0;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Character")
         {
+           Debug.Log(11);
            flag = 1;
         }
     }

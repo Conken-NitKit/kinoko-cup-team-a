@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Diagnostics;
 
 public class ViewTime : MonoBehaviour
 {
-    public float countTime = 0.0f;
-    public Text viewTime;
-    GameObject JudgeObject;
-    JudgeGame JudgeGame;
+    public static float countTime = 0.0f;
+    public bool TimeActive;
+    public UnityEngine.UI.Text viewTime;
+    public GameObject judgeObject;
+    public JudgeGame judgeGame;
 
     /**
     <summary>
@@ -23,25 +23,48 @@ public class ViewTime : MonoBehaviour
     動作の説明ー＞
     Start関数でJudgeObjectクラスを呼び出しflag変数を取得
     flagが０の時はタイマーを動かし、flagが1の時は止める
+
+
+    flag = 0    ゲーム中
+    flag = 1    ゲームオーバー中
+
     <summary>
     */
 
     void Start()
     {
-        JudgeObject = GameObject.Find("JudgeObject");
-        JudgeGame = JudgeObject.GetComponent<JudgeGame>();
+        Debug.Log(5);
+        TimeActive = false;
+        judgeObject = GameObject.Find("JudgeObject");
+        judgeGame = judgeObject.GetComponent<JudgeGame>();
     }
 
     void Update(){
-        if(JudgeGame.flag == 0)
+        if(TimeActive)
         {
-            countTime = Time.time;
+            Debug.Log(6);
+            countTime += Time.deltaTime;
         }
-        else
+        if(judgeGame.flag == 1)
         {
-            countTime = countTime;
+            Debug.Log(7);
+            TimeActive = false;
         }
         
         viewTime.text = countTime.ToString("f0") + "秒";
     }
+
+    public void GameStart()
+    {
+        Debug.Log(8);
+        TimeActive = true;
+    }
+
+    public void TitleView()
+    {
+        Debug.Log(9);
+        countTime = 0f;
+        TimeActive = false;
+    }
+
 }
