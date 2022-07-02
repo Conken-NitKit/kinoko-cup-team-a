@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ViewTime : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ViewTime : MonoBehaviour
     public bool TimeActive;
     public UnityEngine.UI.Text viewTime;
     public GameObject judgeObject;
-    public JudgeGame judgeGame;
+    private JudgeGame judgeScript;
 
     /**
     <summary>
@@ -36,16 +37,17 @@ public class ViewTime : MonoBehaviour
         Debug.Log(5);
         TimeActive = false;
         judgeObject = GameObject.Find("JudgeObject");
-        judgeGame = judgeObject.GetComponent<JudgeGame>();
+        judgeScript = judgeObject.GetComponent<JudgeGame>();
     }
 
     void Update(){
+        
         if(TimeActive)
         {
             Debug.Log(6);
             countTime += Time.deltaTime;
         }
-        if(judgeGame.flag == 1)
+        if(judgeScript.flag == 1)
         {
             Debug.Log(7);
             TimeActive = false;

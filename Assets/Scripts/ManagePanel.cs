@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ManagePanel : MonoBehaviour
 {
     private GameObject judgeObject;
-    JudgeGame judgeGame;
+    JudgeGame judgeScript;
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject TitlePanel;
     [SerializeField] GameObject GamePanel;
@@ -30,12 +30,12 @@ public class ManagePanel : MonoBehaviour
     {
         Debug.Log(1);
         judgeObject = GameObject.Find("JudgeObject");
-        judgeGame = judgeObject.GetComponent<JudgeGame>();
+        judgeScript = judgeObject.GetComponent<JudgeGame>();
     }
 
     void Update()
     {
-        if(judgeGame.flag == 1)
+        if(judgeScript.flag == 1)
         {
             Debug.Log(2);
             GameOverPanel.SetActive(true);
@@ -46,7 +46,8 @@ public class ManagePanel : MonoBehaviour
     public void TitleView()
     {
         Debug.Log(3);
-        SceneManager.LoadScene(0);
+        GameOverPanel.SetActive(false);
+        TitlePanel.SetActive(true);
     }
 
     public void GameStart()
