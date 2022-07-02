@@ -5,24 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class JudgeGame : MonoBehaviour
 {
+    public int flag = 0;
+    
     /**
     <summary>
+    設定の説明ー＞
     動物と下に当たった時の判断をする棒を置く
     動物にridgid body2Dとbox collider、棒にbox colliderをつける
-    棒にtagのCharacterを設定
-    GameOverシーンを新しく作った
-
-    再生すると動物が棒に当たりGameOverシーンに移動する
-
+    動物にtagのCharacterを設定
+    flag変数はゲームオーバーしたかどうかを判断する
+    通常はflagは0, 下の棒に当たると1になる
     下のOnTriggerEnter2Dはcharacterに何か当たると発動するメソッド
-    ifでCharacterタグのものが当たったらGameOverシーンへ移動
+    JudgeObjectに適用する
+
+    適用対象ー＞
+    JudgeObject
+
+    動作の説明ー＞
+    ifでCharacterタグのものが当たったらflagを1にする
     <summary>
     */
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Character")
         {
-           SceneManager.LoadScene("GameOver");
+           flag = 1;
         }
     }
 }

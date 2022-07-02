@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
-using System.Diagnostics;
 
-public class ViewTime : MonoBehaviour
+public class ViewGameOver : MonoBehaviour
 {
-    public float countTime = 0.0f;
-    public Text viewTime;
     GameObject JudgeObject;
     JudgeGame JudgeGame;
+    [SerializeField] GameObject GameOverPanel;
 
     /**
     <summary>
@@ -18,30 +14,29 @@ public class ViewTime : MonoBehaviour
     JudgeObjectやJudgeGameはflagを呼び出すための変数
 
     適用対象ー＞
-    Timeオブジェクト
-    
+    UI Manager
+
     動作の説明ー＞
-    Start関数でJudgeObjectクラスを呼び出しflag変数を取得
-    flagが０の時はタイマーを動かし、flagが1の時は止める
+    ゲームオーバーのパネルを表示するスクリプト
+    JudgeGameを呼び出してflag変数を呼び出す
+    flagが0の時はGameOverを非表示に、flagが1の時は表示する。
     <summary>
     */
-
     void Start()
     {
         JudgeObject = GameObject.Find("JudgeObject");
         JudgeGame = JudgeObject.GetComponent<JudgeGame>();
     }
 
-    void Update(){
+    void Update()
+    {
         if(JudgeGame.flag == 0)
         {
-            countTime = Time.time;
+            GameOverPanel.SetActive(false);
         }
-        else
+        if(JudgeGame.flag == 1)
         {
-            countTime = countTime;
+            GameOverPanel.SetActive(true);
         }
-        
-        viewTime.text = countTime.ToString("f0") + "秒";
     }
 }
