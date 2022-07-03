@@ -8,20 +8,20 @@ public class ManagePanel : MonoBehaviour
 {
     private GameObject judgeObject;
     JudgeGame judgeScript;
-    private GameObject Character;
-    private Rigidbody2D rb;
-
+    private GameObject successObject;
+    SuccessObject successScript;
 
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject TitlePanel;
+    [SerializeField] GameObject SuccessPanel;
 
     void Start()
     {
         Debug.Log(1);
-        Character = GameObject.Find("Character");
-        rb = Character.GetComponent<Rigidbody2D>();
         judgeObject = GameObject.Find("JudgeObject");
         judgeScript = judgeObject.GetComponent<JudgeGame>();
+        successObject = GameObject.Find("SuccessObject");
+        successScript = successObject.GetComponent<SuccessObject>();
     }
 
     void Update()
@@ -31,14 +31,24 @@ public class ManagePanel : MonoBehaviour
             Debug.Log(2);
             GameOverPanel.SetActive(true);
             TitlePanel.SetActive(false);
+            SuccessPanel.SetActive(false);
+        }
+
+        if(successScript.flag == 2)   //あたった時
+        {
+            Debug.Log(13);
+            GameOverPanel.SetActive(false);
+            TitlePanel.SetActive(false);
+            SuccessPanel.SetActive(true);
         }
     }
+
     public void GameStart()
     {
         Debug.Log(4);
-        rb.velocity = Vector3.zero;
         GameOverPanel.SetActive(false);
         TitlePanel.SetActive(false);
+        SuccessPanel.SetActive(false);
     }
 
     public void TitleView()

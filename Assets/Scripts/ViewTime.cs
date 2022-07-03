@@ -28,7 +28,7 @@ public class ViewTime : MonoBehaviour
             Debug.Log(6);
             countTime += Time.deltaTime;
         }
-        if(judgeScript.flag == 1)
+        if(judgeScript.flag == 1 | judgeScript.flag == 2)
         {
             Debug.Log(7);
             TimeActive = false;
