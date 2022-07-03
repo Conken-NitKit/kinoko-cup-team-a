@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SuccessObject : MonoBehaviour
+public class JudgeSuccess : MonoBehaviour
 {
     public int flag;
 
+    /**
+    <summary>
+    flagは上の棒にあたったかどうか判断するもの
+    上の棒に当てることに成功するとflagが2になる
+    <summary>
+    */
+
     void Start()
     {
-        Debug.Log(12);
         flag = 0;
     }
 
@@ -18,7 +24,6 @@ public class SuccessObject : MonoBehaviour
     {
         if(other.gameObject.tag == "Character")
         {
-           Debug.Log(13);
            flag = 2;
         }
     }

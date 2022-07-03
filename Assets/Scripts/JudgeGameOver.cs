@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class JudgeGame : MonoBehaviour
+public class JudgeGameOver : MonoBehaviour
 {
     public int flag;
 
+    /**
+    <summary>
+    lagは下の棒にあたったかどうか判断するもの
+    下の棒に当たるとflagが1になる
+    <summary>
+    */
+
     void Start()
     {
-        Debug.Log(10);
         flag = 0;
     }
 
@@ -18,7 +24,6 @@ public class JudgeGame : MonoBehaviour
     {
         if(other.gameObject.tag == "Character")
         {
-           Debug.Log(11);
            flag = 1;
         }
     }

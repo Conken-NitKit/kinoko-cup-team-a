@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 354124319}
   - component: {fileID: 354124322}
   m_Layer: 0
-  m_Name: SuccessObject
+  m_Name: JudgeSuccessObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &354124322
 BoxCollider2D:
@@ -423,7 +423,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeActive: 0
   viewTime: {fileID: 374450285}
-  judgeObject: {fileID: 727744008}
+  judgeOverObject: {fileID: 0}
+  judgeSuccessObject: {fileID: 0}
 --- !u!114 &374450285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +792,7 @@ GameObject:
   - component: {fileID: 727744011}
   - component: {fileID: 727744010}
   m_Layer: 3
-  m_Name: JudgeObject
+  m_Name: JudgeOverObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -809,7 +810,7 @@ Transform:
   m_LocalScale: {x: 22, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &727744010
 BoxCollider2D:
@@ -998,7 +999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &921468538
 SpriteRenderer:

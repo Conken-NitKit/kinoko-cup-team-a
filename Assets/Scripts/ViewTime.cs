@@ -10,27 +10,43 @@ public class ViewTime : MonoBehaviour
     public static float countTime = 0.0f;
     public bool TimeActive;
     public UnityEngine.UI.Text viewTime;
-    public GameObject judgeObject;
-    private JudgeGame judgeScript;
+    public GameObject judgeOverObject;
+    private JudgeGameOver judgeOverScript;
+    public GameObject judgeSuccessObject;
+    private JudgeSuccess judgeSuccessScript;
+
+    /**
+    <summary>
+    JudgeSuccessとJudgeGameOverからflagを取ってくる
+
+    deltaTimeで時間を加算
+
+    TimeActiveで時間を再生するかしないか決める
+
+    成功した時、失敗した時時間を止めるために
+    if文でTimeActiveをfalseに
+
+    タイトルボタンを押したら時間はリセットするために０を代入
+    <summary>
+    */
 
     void Start()
     {
-        Debug.Log(5);
         TimeActive = false;
-        judgeObject = GameObject.Find("JudgeObject");
-        judgeScript = judgeObject.GetComponent<JudgeGame>();
+        judgeOverObject = GameObject.Find("JudgeOverObject");
+        judgeOverScript = judgeOverObject.GetComponent<JudgeGameOver>();
+        judgeSuccessObject = GameObject.Find("JudgeSuccessObject");
+        judgeSuccessScript = judgeSuccessObject.GetComponent<JudgeSuccess>();
     }
 
     void Update(){
         
         if(TimeActive)
         {
-            Debug.Log(6);
             countTime += Time.deltaTime;
         }
-        if(judgeScript.flag == 1 | judgeScript.flag == 2)
+        if(judgeOverScript.flag == 1 | judgeSuccessScript.flag == 2)
         {
-            Debug.Log(7);
             TimeActive = false;
         }
         
@@ -39,13 +55,11 @@ public class ViewTime : MonoBehaviour
 
     public void GameStart()
     {
-        Debug.Log(8);
         TimeActive = true;
     }
 
     public void TitleView()
     {
-        Debug.Log(9);
         countTime = 0f;
         TimeActive = false;
     }

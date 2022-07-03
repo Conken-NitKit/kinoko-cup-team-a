@@ -6,37 +6,47 @@ using UnityEngine.SceneManagement;
 
 public class ManagePanel : MonoBehaviour
 {
-    private GameObject judgeObject;
-    JudgeGame judgeScript;
-    private GameObject successObject;
-    SuccessObject successScript;
+    private GameObject judgeOverObject;
+    JudgeGameOver judgeOverScript;
+    private GameObject judgeSuccessObject;
+    JudgeSuccess judgeSuccessScript;
 
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject TitlePanel;
     [SerializeField] GameObject SuccessPanel;
 
+    /**
+    <summary>
+    JudgeSuccessとJudgeGameOverからflagを取ってくる
+    flagが1の時失敗 ー＞ ゲームオーバーパネルを表示
+    flagが２の時成功 ー＞ 成功パネルを表示
+
+    startボタンをタイトルパネルに設置
+    TitleViewボタンを成功パネルとゲームオーバーパネルに表示
+
+    TitleViewボタンでシーンをロードする
+    <summary>
+    */
+
     void Start()
     {
-        Debug.Log(1);
-        judgeObject = GameObject.Find("JudgeObject");
-        judgeScript = judgeObject.GetComponent<JudgeGame>();
-        successObject = GameObject.Find("SuccessObject");
-        successScript = successObject.GetComponent<SuccessObject>();
+        judgeOverObject = GameObject.Find("JudgeOverObject");
+        judgeOverScript = judgeOverObject.GetComponent<JudgeGameOver>();
+        judgeSuccessObject = GameObject.Find("JudgeSuccessObject");
+        judgeSuccessScript = judgeSuccessObject.GetComponent<JudgeSuccess>();
     }
 
     void Update()
     {
-        if(judgeScript.flag == 1)   //あたった時
+        if(judgeOverScript.flag == 1)
         {
-            Debug.Log(2);
             GameOverPanel.SetActive(true);
             TitlePanel.SetActive(false);
             SuccessPanel.SetActive(false);
         }
 
-        if(successScript.flag == 2)   //あたった時
+        if(judgeSuccessScript.flag == 2)
         {
-            Debug.Log(13);
             GameOverPanel.SetActive(false);
             TitlePanel.SetActive(false);
             SuccessPanel.SetActive(true);
@@ -45,7 +55,6 @@ public class ManagePanel : MonoBehaviour
 
     public void GameStart()
     {
-        Debug.Log(4);
         GameOverPanel.SetActive(false);
         TitlePanel.SetActive(false);
         SuccessPanel.SetActive(false);
@@ -53,7 +62,6 @@ public class ManagePanel : MonoBehaviour
 
     public void TitleView()
     {
-        Debug.Log(3);
         SceneManager.LoadScene(0);
     }
 
