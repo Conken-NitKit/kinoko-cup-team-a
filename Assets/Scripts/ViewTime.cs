@@ -13,25 +13,6 @@ public class ViewTime : MonoBehaviour
     public GameObject judgeObject;
     private JudgeGame judgeScript;
 
-    /**
-    <summary>
-    設定の説明ー＞
-    JudgeObjectやJudgeGameはflagを呼び出すための変数
-
-    適用対象ー＞
-    Timeオブジェクト
-    
-    動作の説明ー＞
-    Start関数でJudgeObjectクラスを呼び出しflag変数を取得
-    flagが０の時はタイマーを動かし、flagが1の時は止める
-
-
-    flag = 0    ゲーム中
-    flag = 1    ゲームオーバー中
-
-    <summary>
-    */
-
     void Start()
     {
         Debug.Log(5);
