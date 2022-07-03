@@ -3,45 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Diagnostics;
+using UnityEngine.SceneManagement;
 
 public class ViewTime : MonoBehaviour
 {
-    public float countTime = 0.0f;
-    public Text viewTime;
-    GameObject JudgeObject;
-    JudgeGame JudgeGame;
+    public static float countTime = 0.0f;
+    public bool TimeActive;
+    public UnityEngine.UI.Text viewTime;
+    public GameObject judgeOverObject;
+    private JudgeGameOver judgeOverScript;
+    public GameObject judgeSuccessObject;
+    private JudgeSuccess judgeSuccessScript;
 
     /**
     <summary>
-    設定の説明ー＞
-    JudgeObjectやJudgeGameはflagを呼び出すための変数
+    JudgeSuccessとJudgeGameOverからflagを取ってくる
 
-    適用対象ー＞
-    Timeオブジェクト
-    
-    動作の説明ー＞
-    Start関数でJudgeObjectクラスを呼び出しflag変数を取得
-    flagが０の時はタイマーを動かし、flagが1の時は止める
+    deltaTimeで時間を加算
+
+    TimeActiveで時間を再生するかしないか決める
+
+    成功した時、失敗した時時間を止めるために
+    if文でTimeActiveをfalseに
+
+    タイトルボタンを押したら時間はリセットするために０を代入
     <summary>
     */
 
     void Start()
     {
-        JudgeObject = GameObject.Find("JudgeObject");
-        JudgeGame = JudgeObject.GetComponent<JudgeGame>();
+        TimeActive = false;
+        judgeOverObject = GameObject.Find("JudgeOverObject");
+        judgeOverScript = judgeOverObject.GetComponent<JudgeGameOver>();
+        judgeSuccessObject = GameObject.Find("JudgeSuccessObject");
+        judgeSuccessScript = judgeSuccessObject.GetComponent<JudgeSuccess>();
     }
 
     void Update(){
-        if(JudgeGame.flag == 0)
+        
+        if(TimeActive)
         {
-            countTime = Time.time;
+            countTime += Time.deltaTime;
         }
-        else
+        if(judgeOverScript.flag == 1 | judgeSuccessScript.flag == 2)
         {
-            countTime = countTime;
+            TimeActive = false;
         }
         
         viewTime.text = countTime.ToString("f0") + "秒";
     }
+
+    public void GameStart()
+    {
+        TimeActive = true;
+    }
+
+    public void TitleView()
+    {
+        countTime = 0f;
+        TimeActive = false;
+    }
+
 }
