@@ -11,18 +11,19 @@ public class AnimalGenerator : MonoBehaviour{
     void Start()
     {
         Animal();
-    }   
-    //void FixedUpdate()
-    //{
-       // if(collision.gameObject.name=="stage")
-        //{
-            //Animal();
-       // }
-   // }
+    } 
+      
+    void FixedUpdate()
+    {
+        if(Input.GetKeyUp(KeyCode.A) | Input.GetKeyUp(KeyCode.D))
+        {
+           Animal();
+        }
+    }
 
     private void Animal(){
         number = Random.Range (0, animal.Length);
         //animal[number].GetComponent<Rigidbody2D>().isKinematic = true;
-        Instantiate(animal[number],transform.position,transform.rotation);
+        Instantiate(animal[number],new Vector3(0, 0, 0),transform.rotation);
     }   
 }
