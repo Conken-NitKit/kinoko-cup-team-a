@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Kaiten : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void TurnRight(){
+            Debug.Log("右回転");
+            Migikaiten();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Migikaiten(){
+        transform.Rotate(new Vector3(0, 0, 90));
     }
 }
