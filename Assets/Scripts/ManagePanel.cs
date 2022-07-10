@@ -11,6 +11,7 @@ public class ManagePanel : MonoBehaviour
     private GameObject judgeSuccessObject;
     JudgeSuccess judgeSuccessScript;
 
+    [SerializeField] GameObject GamaPanel;
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] GameObject TitlePanel;
     [SerializeField] GameObject SuccessPanel;
@@ -30,9 +31,9 @@ public class ManagePanel : MonoBehaviour
 
     void Start()
     {
-        judgeOverObject = GameObject.Find("JudgeOverObject");
+        judgeOverObject = GameObject.Find("JudgeOver");
         judgeOverScript = judgeOverObject.GetComponent<JudgeGameOver>();
-        judgeSuccessObject = GameObject.Find("JudgeSuccessObject");
+        judgeSuccessObject = GameObject.Find("JudgeSuccess");
         judgeSuccessScript = judgeSuccessObject.GetComponent<JudgeSuccess>();
     }
 
@@ -40,6 +41,8 @@ public class ManagePanel : MonoBehaviour
     {
         if(judgeOverScript.flag == 1)
         {
+            Debug.Log("judgeOverScript.flag == 1");
+            GamaPanel.SetActive(false);
             GameOverPanel.SetActive(true);
             TitlePanel.SetActive(false);
             SuccessPanel.SetActive(false);
@@ -47,6 +50,8 @@ public class ManagePanel : MonoBehaviour
 
         if(judgeSuccessScript.flag == 2)
         {
+            Debug.Log("judgeOverScript.flag == 2");
+            GamaPanel.SetActive(false);
             GameOverPanel.SetActive(false);
             TitlePanel.SetActive(false);
             SuccessPanel.SetActive(true);
@@ -55,6 +60,7 @@ public class ManagePanel : MonoBehaviour
 
     public void GameStart()
     {
+        GamaPanel.SetActive(true);
         GameOverPanel.SetActive(false);
         TitlePanel.SetActive(false);
         SuccessPanel.SetActive(false);

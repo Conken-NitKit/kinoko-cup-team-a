@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - gameover
+  - stage
   layers:
   - Default
   - TransparentFX

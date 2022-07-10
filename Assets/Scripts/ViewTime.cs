@@ -33,9 +33,9 @@ public class ViewTime : MonoBehaviour
     void Start()
     {
         TimeActive = false;
-        judgeOverObject = GameObject.Find("JudgeOverObject");
+        judgeOverObject = GameObject.Find("JudgeOver");
         judgeOverScript = judgeOverObject.GetComponent<JudgeGameOver>();
-        judgeSuccessObject = GameObject.Find("JudgeSuccessObject");
+        judgeSuccessObject = GameObject.Find("JudgeSuccess");
         judgeSuccessScript = judgeSuccessObject.GetComponent<JudgeSuccess>();
     }
 
@@ -44,10 +44,12 @@ public class ViewTime : MonoBehaviour
         if(TimeActive)
         {
             countTime += Time.deltaTime;
+            Debug.Log("時間加算中");
         }
         if(judgeOverScript.flag == 1 | judgeSuccessScript.flag == 2)
         {
             TimeActive = false;
+            Debug.Log("時間停止");
         }
         
         viewTime.text = countTime.ToString("f0") + "秒";
@@ -55,6 +57,7 @@ public class ViewTime : MonoBehaviour
 
     public void GameStart()
     {
+        Debug.Log("時間スタート");
         TimeActive = true;
     }
 
